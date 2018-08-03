@@ -1,0 +1,37 @@
+---
+request:
+  class: HTTP::Request
+  fields:
+    content: ''
+    headers:
+      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+      Accept-Encoding: 'gzip, deflate'
+      Accept-Language: 'de,en-US;q=0.7,en;q=0.3'
+      Cache-Control: max-age=0
+      Connection: keep-alive
+      Host: rika
+      Upgrade-Insecure-Requests: 1
+      User-Agent: Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0
+    method: GET
+    uri: http://rika/test
+response:
+  class: HTTP::Response
+  fields:
+    code: 500
+    content: |
+      Can't connect to rika:80 (Name or service not known)
+      
+      Name or service not known at /usr/share/perl5/vendor_perl/LWP/Protocol/http.pm line 50.
+    headers:
+      Client-Date: 'Wed, 01 Aug 2018 11:43:26 GMT'
+      Client-Warning: Internal response
+      Content-Type: text/plain
+    message: Can't connect to rika:80 (Name or service not known)
+rules:
+  headers: match
+  method: match
+  uri:
+    host: match
+    path: match
+    query_form: match
+    scheme: match

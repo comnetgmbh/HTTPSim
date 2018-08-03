@@ -1,0 +1,26 @@
+---
+request:
+  class: HTTP::Request
+  fields:
+    method: GET
+    uri: http://rika/test
+response:
+  class: HTTP::Response
+  fields:
+    code: 200
+    content: |-
+        <html>
+            <body>
+                You requested [% request.uri %]!
+                You have been requesting [% server.continous_request_count %] times.
+            </body>
+        </html>
+    headers:
+      Content-Type: text/html; charset=utf-8
+    message: OK
+rules:
+  method: match
+  uri:
+    host: match
+    path: match
+    scheme: match

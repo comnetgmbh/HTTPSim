@@ -1,0 +1,415 @@
+---
+request:
+  class: HTTP::Request
+  fields:
+    content: ''
+    headers:
+      Accept: '*/*'
+      Accept-Encoding: identity
+      Connection: Keep-Alive
+      Host: wikipedia.org
+      Proxy-Connection: Keep-Alive
+      User-Agent: Wget/1.18 (linux-gnu)
+    method: GET
+    uri: http://wikipedia.org/foo?bar=baz&quux=quuux
+response:
+  class: HTTP::Response
+  fields:
+    code: 404
+    content: |-
+      <!DOCTYPE html>
+      <html lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <title>Not Found</title>
+      <link rel="shortcut icon" href="/favicon.ico">
+      <style>
+      * { margin: 0; padding: 0; }
+      body { background: #fff; font: 15px/1.6 sans-serif; color: #333; }
+      .content { margin: 7% auto 0; padding: 2em 1em 1em; max-width: 640px; }
+      img { float: left; margin: 0 2em 2em 0; }
+      a img { border: 0; }
+      h1 { margin-top: 1em; font-size: 1.2em; }
+      p { margin: 0.7em 0 1em 0; }
+      a { color: #0645AD; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      em { font-style: normal; color: #777; }
+      </style>
+      <div class="content" role="main">
+      <a href="https://www.wikimedia.org"><img src="https://www.wikimedia.org/static/images/wmf.png" srcset="https://www.wikimedia.org/static/images/wmf-2x.png 2x" alt=Wikimedia width=135 height=135></a>
+      <h1>Page not found</h1>
+      <p><em>/foo</em></p>
+      <p>We could not find the above page on our servers.</p>
+      <p><b>Did you mean: <a href="/wiki/foo">/wiki/foo</a></b></p>
+      <div style="clear:both;"></div>
+      <p>Alternatively, you can visit the <a href="/">Main Page</a> or read <a href="https://en.wikipedia.org/wiki/HTTP_404" title="Wikipedia: HTTP 404">more information</a> about this type of error.</p>
+      </div>
+      </html>
+    headers:
+      Age: 50
+      Backend-Timing: D=1114 t=1532786699680707
+      Cache-Control: 's-maxage=2678400, max-age=2678400'
+      Client-Date: 'Sat, 28 Jul 2018 14:05:50 GMT'
+      Client-Peer: 91.198.174.192:443
+      Client-Response-Num: 1
+      Client-SSL-Cert-Issuer: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA
+      Client-SSL-Cert-Subject: '/C=US/ST=California/L=San Francisco/O=Wikimedia Foundation, Inc./CN=*.wikipedia.org'
+      Client-SSL-Cipher: ECDHE-ECDSA-CHACHA20-POLY1305
+      Client-SSL-Socket-Class: IO::Socket::SSL
+      Connection: close
+      Content-Length: 1221
+      Content-Type: text/html; charset=utf-8
+      Date: 'Sat, 28 Jul 2018 14:05:50 GMT'
+      Link: </favicon.ico>; rel="shortcut icon"
+      Server: mw1256.eqiad.wmnet
+      Set-Cookie: 'WMF-Last-Access=28-Jul-2018;Path=/;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, WMF-Last-Access-Global=28-Jul-2018;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, GeoIP=DE:NI:Hanover:52.41:9.81:v4; Path=/; secure; Domain=.wikipedia.org'
+      Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+      Title: Not Found
+      Vary: Accept-Encoding
+      Via: '1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)'
+      X-Analytics: https=1;nocookies=1
+      X-Cache: 'cp1054 pass, cp3030 miss, cp3033 hit/1'
+      X-Cache-Status: hit-front
+      X-Meta-Charset: utf-8
+      X-Powered-By: HHVM/3.18.6-dev
+      X-Varnish: '312632450, 1023409922, 32117888 7371787'
+    message: Not Found
+rules:
+  headers: match
+  method: match
+  uri:
+    host: match
+    path: match
+    query_form: match
+    scheme: match
+---
+request:
+  class: HTTP::Request
+  fields:
+    content: ''
+    headers:
+      Accept: '*/*'
+      Accept-Encoding: identity
+      Connection: Keep-Alive
+      Host: wikipedia.org
+      Proxy-Connection: Keep-Alive
+      User-Agent: Wget/1.18 (linux-gnu)
+    method: GET
+    uri: http://wikipedia.org/foo
+response:
+  class: HTTP::Response
+  fields:
+    code: 404
+    content: |-
+      <!DOCTYPE html>
+      <html lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <title>Not Found</title>
+      <link rel="shortcut icon" href="/favicon.ico">
+      <style>
+      * { margin: 0; padding: 0; }
+      body { background: #fff; font: 15px/1.6 sans-serif; color: #333; }
+      .content { margin: 7% auto 0; padding: 2em 1em 1em; max-width: 640px; }
+      img { float: left; margin: 0 2em 2em 0; }
+      a img { border: 0; }
+      h1 { margin-top: 1em; font-size: 1.2em; }
+      p { margin: 0.7em 0 1em 0; }
+      a { color: #0645AD; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      em { font-style: normal; color: #777; }
+      </style>
+      <div class="content" role="main">
+      <a href="https://www.wikimedia.org"><img src="https://www.wikimedia.org/static/images/wmf.png" srcset="https://www.wikimedia.org/static/images/wmf-2x.png 2x" alt=Wikimedia width=135 height=135></a>
+      <h1>Page not found</h1>
+      <p><em>/foo</em></p>
+      <p>We could not find the above page on our servers.</p>
+      <p><b>Did you mean: <a href="/wiki/foo">/wiki/foo</a></b></p>
+      <div style="clear:both;"></div>
+      <p>Alternatively, you can visit the <a href="/">Main Page</a> or read <a href="https://en.wikipedia.org/wiki/HTTP_404" title="Wikipedia: HTTP 404">more information</a> about this type of error.</p>
+      </div>
+      </html>
+    headers:
+      Age: 71
+      Backend-Timing: D=1114 t=1532786699680707
+      Cache-Control: 's-maxage=2678400, max-age=2678400'
+      Client-Date: 'Sat, 28 Jul 2018 14:06:11 GMT'
+      Client-Peer: 91.198.174.192:443
+      Client-Response-Num: 1
+      Client-SSL-Cert-Issuer: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA
+      Client-SSL-Cert-Subject: '/C=US/ST=California/L=San Francisco/O=Wikimedia Foundation, Inc./CN=*.wikipedia.org'
+      Client-SSL-Cipher: ECDHE-ECDSA-CHACHA20-POLY1305
+      Client-SSL-Socket-Class: IO::Socket::SSL
+      Connection: close
+      Content-Length: 1221
+      Content-Type: text/html; charset=utf-8
+      Date: 'Sat, 28 Jul 2018 14:06:11 GMT'
+      Link: </favicon.ico>; rel="shortcut icon"
+      Server: mw1256.eqiad.wmnet
+      Set-Cookie: 'WMF-Last-Access=28-Jul-2018;Path=/;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, WMF-Last-Access-Global=28-Jul-2018;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, GeoIP=DE:NI:Hanover:52.41:9.81:v4; Path=/; secure; Domain=.wikipedia.org'
+      Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+      Title: Not Found
+      Vary: Accept-Encoding
+      Via: '1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)'
+      X-Analytics: https=1;nocookies=1
+      X-Cache: 'cp1054 pass, cp3030 miss, cp3033 hit/2'
+      X-Cache-Status: hit-front
+      X-Meta-Charset: utf-8
+      X-Powered-By: HHVM/3.18.6-dev
+      X-Varnish: '312632450, 1023409922, 33001232 7371787'
+    message: Not Found
+rules:
+  headers: match
+  method: match
+  uri:
+    host: match
+    path: match
+    query_form: match
+    scheme: match
+---
+request:
+  class: HTTP::Request
+  fields:
+    content: ''
+    headers:
+      Accept: '*/*'
+      Accept-Encoding: identity
+      Connection: Keep-Alive
+      Host: wikipedia.org
+      Proxy-Connection: Keep-Alive
+      User-Agent: Wget/1.18 (linux-gnu)
+    method: GET
+    uri: http://wikipedia.org/foo
+response:
+  class: HTTP::Response
+  fields:
+    code: 404
+    content: |-
+      <!DOCTYPE html>
+      <html lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <title>Not Found</title>
+      <link rel="shortcut icon" href="/favicon.ico">
+      <style>
+      * { margin: 0; padding: 0; }
+      body { background: #fff; font: 15px/1.6 sans-serif; color: #333; }
+      .content { margin: 7% auto 0; padding: 2em 1em 1em; max-width: 640px; }
+      img { float: left; margin: 0 2em 2em 0; }
+      a img { border: 0; }
+      h1 { margin-top: 1em; font-size: 1.2em; }
+      p { margin: 0.7em 0 1em 0; }
+      a { color: #0645AD; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      em { font-style: normal; color: #777; }
+      </style>
+      <div class="content" role="main">
+      <a href="https://www.wikimedia.org"><img src="https://www.wikimedia.org/static/images/wmf.png" srcset="https://www.wikimedia.org/static/images/wmf-2x.png 2x" alt=Wikimedia width=135 height=135></a>
+      <h1>Page not found</h1>
+      <p><em>/foo</em></p>
+      <p>We could not find the above page on our servers.</p>
+      <p><b>Did you mean: <a href="/wiki/foo">/wiki/foo</a></b></p>
+      <div style="clear:both;"></div>
+      <p>Alternatively, you can visit the <a href="/">Main Page</a> or read <a href="https://en.wikipedia.org/wiki/HTTP_404" title="Wikipedia: HTTP 404">more information</a> about this type of error.</p>
+      </div>
+      </html>
+    headers:
+      Age: 314
+      Backend-Timing: D=1114 t=1532786699680707
+      Cache-Control: 's-maxage=2678400, max-age=2678400'
+      Client-Date: 'Sat, 28 Jul 2018 14:10:14 GMT'
+      Client-Peer: 91.198.174.192:443
+      Client-Response-Num: 1
+      Client-SSL-Cert-Issuer: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA
+      Client-SSL-Cert-Subject: '/C=US/ST=California/L=San Francisco/O=Wikimedia Foundation, Inc./CN=*.wikipedia.org'
+      Client-SSL-Cipher: ECDHE-ECDSA-CHACHA20-POLY1305
+      Client-SSL-Socket-Class: IO::Socket::SSL
+      Connection: close
+      Content-Length: 1221
+      Content-Type: text/html; charset=utf-8
+      Date: 'Sat, 28 Jul 2018 14:10:14 GMT'
+      Link: </favicon.ico>; rel="shortcut icon"
+      Server: mw1256.eqiad.wmnet
+      Set-Cookie: 'WMF-Last-Access=28-Jul-2018;Path=/;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, WMF-Last-Access-Global=28-Jul-2018;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, GeoIP=DE:NI:Hanover:52.41:9.81:v4; Path=/; secure; Domain=.wikipedia.org'
+      Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+      Title: Not Found
+      Vary: Accept-Encoding
+      Via: '1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)'
+      X-Analytics: https=1;nocookies=1
+      X-Cache: 'cp1054 pass, cp3030 miss, cp3033 hit/3'
+      X-Cache-Status: hit-front
+      X-Meta-Charset: utf-8
+      X-Powered-By: HHVM/3.18.6-dev
+      X-Varnish: '312632450, 1023409922, 32157258 7371787'
+    message: Not Found
+rules:
+  headers: match
+  method: match
+  uri:
+    host: match
+    path: match
+    query_form: match
+    scheme: match
+---
+request:
+  class: HTTP::Request
+  fields:
+    content: ''
+    headers:
+      Accept: '*/*'
+      Accept-Encoding: identity
+      Connection: Keep-Alive
+      Host: wikipedia.org
+      Proxy-Connection: Keep-Alive
+      User-Agent: Wget/1.18 (linux-gnu)
+    method: GET
+    uri: http://wikipedia.org/foo
+response:
+  class: HTTP::Response
+  fields:
+    code: 404
+    content: |-
+      <!DOCTYPE html>
+      <html lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <title>Not Found</title>
+      <link rel="shortcut icon" href="/favicon.ico">
+      <style>
+      * { margin: 0; padding: 0; }
+      body { background: #fff; font: 15px/1.6 sans-serif; color: #333; }
+      .content { margin: 7% auto 0; padding: 2em 1em 1em; max-width: 640px; }
+      img { float: left; margin: 0 2em 2em 0; }
+      a img { border: 0; }
+      h1 { margin-top: 1em; font-size: 1.2em; }
+      p { margin: 0.7em 0 1em 0; }
+      a { color: #0645AD; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      em { font-style: normal; color: #777; }
+      </style>
+      <div class="content" role="main">
+      <a href="https://www.wikimedia.org"><img src="https://www.wikimedia.org/static/images/wmf.png" srcset="https://www.wikimedia.org/static/images/wmf-2x.png 2x" alt=Wikimedia width=135 height=135></a>
+      <h1>Page not found</h1>
+      <p><em>/foo</em></p>
+      <p>We could not find the above page on our servers.</p>
+      <p><b>Did you mean: <a href="/wiki/foo">/wiki/foo</a></b></p>
+      <div style="clear:both;"></div>
+      <p>Alternatively, you can visit the <a href="/">Main Page</a> or read <a href="https://en.wikipedia.org/wiki/HTTP_404" title="Wikipedia: HTTP 404">more information</a> about this type of error.</p>
+      </div>
+      </html>
+    headers:
+      Age: 346
+      Backend-Timing: D=1114 t=1532786699680707
+      Cache-Control: 's-maxage=2678400, max-age=2678400'
+      Client-Date: 'Sat, 28 Jul 2018 14:10:46 GMT'
+      Client-Peer: 91.198.174.192:443
+      Client-Response-Num: 1
+      Client-SSL-Cert-Issuer: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA
+      Client-SSL-Cert-Subject: '/C=US/ST=California/L=San Francisco/O=Wikimedia Foundation, Inc./CN=*.wikipedia.org'
+      Client-SSL-Cipher: ECDHE-ECDSA-CHACHA20-POLY1305
+      Client-SSL-Socket-Class: IO::Socket::SSL
+      Connection: close
+      Content-Length: 1221
+      Content-Type: text/html; charset=utf-8
+      Date: 'Sat, 28 Jul 2018 14:10:46 GMT'
+      Link: </favicon.ico>; rel="shortcut icon"
+      Server: mw1256.eqiad.wmnet
+      Set-Cookie: 'WMF-Last-Access=28-Jul-2018;Path=/;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, WMF-Last-Access-Global=28-Jul-2018;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, GeoIP=DE:NI:Hanover:52.41:9.81:v4; Path=/; secure; Domain=.wikipedia.org'
+      Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+      Title: Not Found
+      Vary: Accept-Encoding
+      Via: '1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)'
+      X-Analytics: https=1;nocookies=1
+      X-Cache: 'cp1054 pass, cp3030 miss, cp3033 hit/4'
+      X-Cache-Status: hit-front
+      X-Meta-Charset: utf-8
+      X-Powered-By: HHVM/3.18.6-dev
+      X-Varnish: '312632450, 1023409922, 35132206 7371787'
+    message: Not Found
+rules:
+  headers: match
+  method: match
+  uri:
+    host: match
+    path: match
+    query_form: match
+    scheme: match
+---
+request:
+  class: HTTP::Request
+  fields:
+    content: ''
+    headers:
+      Accept: '*/*'
+      Accept-Encoding: identity
+      Connection: Keep-Alive
+      Host: wikipedia.org
+      Proxy-Connection: Keep-Alive
+      User-Agent: Wget/1.18 (linux-gnu)
+    method: GET
+    uri: http://wikipedia.org/foo
+response:
+  class: HTTP::Response
+  fields:
+    code: 404
+    content: |-
+      <!DOCTYPE html>
+      <html lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <title>Not Found</title>
+      <link rel="shortcut icon" href="/favicon.ico">
+      <style>
+      * { margin: 0; padding: 0; }
+      body { background: #fff; font: 15px/1.6 sans-serif; color: #333; }
+      .content { margin: 7% auto 0; padding: 2em 1em 1em; max-width: 640px; }
+      img { float: left; margin: 0 2em 2em 0; }
+      a img { border: 0; }
+      h1 { margin-top: 1em; font-size: 1.2em; }
+      p { margin: 0.7em 0 1em 0; }
+      a { color: #0645AD; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      em { font-style: normal; color: #777; }
+      </style>
+      <div class="content" role="main">
+      <a href="https://www.wikimedia.org"><img src="https://www.wikimedia.org/static/images/wmf.png" srcset="https://www.wikimedia.org/static/images/wmf-2x.png 2x" alt=Wikimedia width=135 height=135></a>
+      <h1>Page not found</h1>
+      <p><em>/foo</em></p>
+      <p>We could not find the above page on our servers.</p>
+      <p><b>Did you mean: <a href="/wiki/foo">/wiki/foo</a></b></p>
+      <div style="clear:both;"></div>
+      <p>Alternatively, you can visit the <a href="/">Main Page</a> or read <a href="https://en.wikipedia.org/wiki/HTTP_404" title="Wikipedia: HTTP 404">more information</a> about this type of error.</p>
+      </div>
+      </html>
+    headers:
+      Age: 380
+      Backend-Timing: D=1114 t=1532786699680707
+      Cache-Control: 's-maxage=2678400, max-age=2678400'
+      Client-Date: 'Sat, 28 Jul 2018 14:11:20 GMT'
+      Client-Peer: 91.198.174.192:443
+      Client-Response-Num: 1
+      Client-SSL-Cert-Issuer: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA
+      Client-SSL-Cert-Subject: '/C=US/ST=California/L=San Francisco/O=Wikimedia Foundation, Inc./CN=*.wikipedia.org'
+      Client-SSL-Cipher: ECDHE-ECDSA-CHACHA20-POLY1305
+      Client-SSL-Socket-Class: IO::Socket::SSL
+      Connection: close
+      Content-Length: 1221
+      Content-Type: text/html; charset=utf-8
+      Date: 'Sat, 28 Jul 2018 14:11:20 GMT'
+      Link: </favicon.ico>; rel="shortcut icon"
+      Server: mw1256.eqiad.wmnet
+      Set-Cookie: 'WMF-Last-Access=28-Jul-2018;Path=/;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, WMF-Last-Access-Global=28-Jul-2018;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Wed, 29 Aug 2018 12:00:00 GMT, GeoIP=DE:NI:Hanover:52.41:9.81:v4; Path=/; secure; Domain=.wikipedia.org'
+      Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+      Title: Not Found
+      Vary: Accept-Encoding
+      Via: '1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)'
+      X-Analytics: https=1;nocookies=1
+      X-Cache: 'cp1054 pass, cp3030 miss, cp3033 hit/5'
+      X-Cache-Status: hit-front
+      X-Meta-Charset: utf-8
+      X-Powered-By: HHVM/3.18.6-dev
+      X-Varnish: '312632450, 1023409922, 27999492 7371787'
+    message: Not Found
+rules:
+  headers: match
+  method: match
+  uri:
+    host: match
+    path: match
+    query_form: match
+    scheme: match

@@ -1,0 +1,6 @@
+Revision history for Perl extension App::HTTPSim.
+
+0.01  Wed Jul 18 18:52:29 2018
+	- original version; created by h2xs 1.23 with options
+		-A -X -n App::HTTPSim
+
