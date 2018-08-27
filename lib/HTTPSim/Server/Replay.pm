@@ -7,6 +7,7 @@ extends 'HTTPSim::Server';
 
 use IO::Dir;
 use Template;
+use HTTPSim::Transaction;
 
 has index => (
     is => 'ro',
