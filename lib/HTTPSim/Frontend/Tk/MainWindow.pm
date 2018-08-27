@@ -65,7 +65,7 @@ has label_server_status => (
 has entry_server_status => (
     is => 'ro',
     isa => 'Tk::Entry',
-    default => sub { $_[0]->frame_status->Entry->grid(-row => 0, -column => 1) },
+    default => sub { $_[0]->frame_status->Entry(-state => 'disabled')->grid(-row => 0, -column => 1) },
 );
 
 # Level 4: Last access
@@ -78,7 +78,7 @@ has label_last_access => (
 has entry_last_access => (
     is => 'ro',
     isa => 'Tk::Entry',
-    default => sub { $_[0]->frame_status->Entry->grid(-row => 1, -column => 1) },
+    default => sub { $_[0]->frame_status->Entry(-state => 'disabled')->grid(-row => 1, -column => 1) },
 );
 
 # Level 3: Mode
@@ -132,7 +132,14 @@ has spinbox_port => (
     is => 'ro',
     isa => 'Tk::Spinbox',
     default => sub {
-        my $spinbox = $_[0]->frame_control->Spinbox(-from => 1, -to => 65535)->grid(-row => 1, -column => 1, -stick => 'e');
+        my $this = shift;
+        my $spinbox = $this->frame_control->Spinbox(
+            -from => 1,
+            -to => 65535,
+            -command => sub {
+                $this->settings_changed
+            },
+        )->grid(-row => 1, -column => 1, -stick => 'e');
         $spinbox->set(9090);
         return $spinbox;
     },
@@ -147,7 +154,14 @@ has label_static => (
 has entry_static => (
     is => 'ro',
     isa => 'Tk::Entry',
-    default => sub { $_[0]->frame_control->Entry->grid(-row => 2, -column => 1) },
+    default => sub {
+        my $this = shift;
+        $this->frame_control->Entry(
+            -validatecommand => sub {
+                $this->settings_changed;
+            }
+        )->grid(-row => 2, -column => 1)
+    },
 );
 
 # Level 4: Dir
@@ -168,7 +182,13 @@ has entry_dir => (
     is => 'ro',
     isa => 'Tk::Entry',
     default => sub {
-        my $entry = $_[0]->frame_dir->Entry->pack(-side => 'left', -fill => 'x');
+        my $this = shift;
+        my $entry = $this->frame_dir->Entry(
+            -validatecommand => sub {
+                $this->settings_changed;
+            },
+            -state => 'disabled',
+        )->pack(-side => 'left', -fill => 'x');
         $entry->insert(0, './dump') if HTTPSim::development_build;
         return $entry;
     },
@@ -186,6 +206,7 @@ has button_dir => (
                 if ($selected) {
                     $this->entry_dir->delete(0, 'end');
                     $this->entry_dir->insert(0, $selected);
+                    $this->settings_changed;
                 }
             },
         )->pack(-side => 'right')
@@ -201,7 +222,7 @@ has button_action => (
         $this->frame_control->Button(
             -text => 'Start',
             -command => sub { $this->action },
-        )->grid(-row => 4, -column => 0)
+        )->grid(-row => 4, -column => 0, -columnspan => 2,)
     },
 );
 
@@ -277,6 +298,9 @@ sub clear_server($) {
         croak("Can't shutdown server: $!");
     }
     $this->_clear_server;
+
+    # Update UI
+    $this->button_action->configure(-text => 'Start');
 }
 
 sub select_mode($$) {
@@ -294,6 +318,9 @@ sub select_mode($$) {
     # Carry out
     $active->configure(-relief => 'sunken');
     $inactive->configure(-relief => 'raised');
+
+    # Update UI
+    $this->settings_changed;
 }
 
 sub action($) {
@@ -306,6 +333,9 @@ sub action($) {
 sub build_server($) {
     my $this = shift;
     my %args = ( status_session => $this->get_session_id );
+
+    # Proibit multiple presses
+    $this->button_action->configure(-state => 'disabled');
 
     # Collect mode
     my $mode = 'Dump';
@@ -343,6 +373,16 @@ sub build_server($) {
     $server->start;
 
     return $server;
+}
+
+sub settings_changed($) {
+    my $this = shift;
+
+    return unless $this->has_server;
+
+    $this->button_action->configure(-text => 'Apply');
+    $this->button_action->configure(-state => 'normal');
+    return 1;
 }
 
 sub START {
