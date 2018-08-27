@@ -1,6 +1,23 @@
 use 5.010000;
 use ExtUtils::MakeMaker;
 
+sub MY::postamble {
+	return <<'EOF'
+PAR_SUFFIX = .elf
+
+par: $(foreach each,$(filter %.pl,$(TO_INST_PM)),$(subst .pl,-$(VERSION)$(PAR_SUFFIX),$(each)))
+
+%-$(VERSION)$(PAR_SUFFIX): %.pl pm_to_blib
+	pp -I blib/lib \
+		$(foreach mod, \
+			$(shell perl -MYAML -e 'print(join(q/ /, sort(keys(%{YAML::LoadFile(q/MYMETA.yml/)->{requires}}))). qq/\n/)') \
+				$(shell find lib/ -maxdepth 1 -mindepth 1 -type d -printf '%P '), \
+			-M $(mod)::\
+		) $< -o $@
+
+EOF
+}
+
 WriteMakefile(
     NAME              => 'HTTPSim',
     VERSION_FROM      => 'lib/HTTPSim.pm',
