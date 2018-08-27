@@ -65,7 +65,7 @@ has label_server_status => (
 has entry_server_status => (
     is => 'ro',
     isa => 'Tk::Entry',
-    default => sub { $_[0]->frame_status->Entry(-state => 'disabled')->grid(-row => 0, -column => 1) },
+    default => sub { $_[0]->frame_status->Entry()->grid(-row => 0, -column => 1) },
 );
 
 # Level 4: Last access
@@ -78,7 +78,7 @@ has label_last_access => (
 has entry_last_access => (
     is => 'ro',
     isa => 'Tk::Entry',
-    default => sub { $_[0]->frame_status->Entry(-state => 'disabled')->grid(-row => 1, -column => 1) },
+    default => sub { $_[0]->frame_status->Entry()->grid(-row => 1, -column => 1) },
 );
 
 # Level 3: Mode
@@ -187,7 +187,7 @@ has entry_dir => (
             -validatecommand => sub {
                 $this->settings_changed;
             },
-            -state => 'disabled',
+            #-state => 'disabled',
         )->pack(-side => 'left', -fill => 'x');
         $entry->insert(0, './dump') if HTTPSim::development_build;
         return $entry;
