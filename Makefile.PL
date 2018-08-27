@@ -50,6 +50,8 @@ WriteMakefile(
         URI                                         => 0,
         DateTime                                    => 0,
         PerlIO::gzip                                => 0,
+        Template                                    => 0,
+        IO::Socket::SSL                             => 0,
     },
     ABSTRACT_FROM     => 'lib/HTTPSim.pm',
     AUTHOR            => 'Rika Lena Denia <rika.denia@t-online.de>',
