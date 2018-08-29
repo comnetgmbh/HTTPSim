@@ -301,14 +301,11 @@ sub _match_recurse {
 sub _match_eval {
     my ($this, $expr, $our, $their) = @_;
 
-    if ($expr =~ m!^/(.*)/$!) {
-        return $their =~ /$1/;
-    }
-    elsif ($expr eq 'match') {
+    if ($expr eq 'match') {
         return Data::Compare::Compare($our, $their);
     }
     else {
-        croak("Invalid expression: \"$expr\"");
+        return $their =~ /$expr/;
     }
 }
 

@@ -67,8 +67,8 @@ my %match_rules = (
             host => 'match',
             path => 'match',
             query_form => {
-                get1 => '/val\d/',
-                get2 => '/val\d/',
+                get1 => 'val\d',
+                get2 => 'val\d',
             },
         },
     },
