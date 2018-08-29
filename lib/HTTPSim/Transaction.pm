@@ -111,7 +111,7 @@ sub _serialize_uri($) {
     for (qw/scheme host path/) {
         $ret{$_} = $uri->$_;
     }
-    
+
     my %query = $uri->query_form;
     $ret{query} = {};
     for (keys(%query)) {
@@ -196,7 +196,7 @@ sub from_file($$$) {
     # Do we have a server argument?
     my %server;
     $server{server} = $server if defined $server;
-    
+
     # Create
     for (@documents) {
         my %rules;
@@ -247,9 +247,9 @@ sub _match_get_value {
 
     my $object = shift(@path);
     my $value;
-    
+
     # Fetch value
-    if ($subject->can($object)) {
+    if ((Scalar::Util::blessed($subject)) and ($subject->can($object))) {
         # Methods may return multiple values
         my @v = $subject->$object;
         if (@v > 1) {
