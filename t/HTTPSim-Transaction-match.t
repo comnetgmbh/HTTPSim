@@ -99,14 +99,14 @@ while (my ($rules, $results) = each(%match_results)) {
             rules => $match_rules{$rules},
         );
     }
-    
+
     my $transaction = HTTPSim::Transaction->new(
         server => $server,
         request => HTTP::Request->new(@{$match_tests{match}}),
         response => $response,
         %rules,
     );
-    
+
     while (my ($test, $result) = each(%{$results })) {
         my $got = $transaction->match(
             HTTP::Request->new(@{$match_tests{$test}}),
@@ -115,7 +115,6 @@ while (my ($rules, $results) = each(%match_results)) {
         is($got, $result, "$rules: $test");
     }
 }
-
 
 $server->shutdown;
 POE::Kernel->run;
