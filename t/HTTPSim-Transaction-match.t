@@ -18,7 +18,7 @@ use HTTP::Response;
 use HTTP::Headers;
 
 use Log::Log4perl qw/:easy/;
-BEGIN { Log::Log4perl->easy_init() };
+BEGIN { Log::Log4perl->easy_init($WARN) };
 
 my $server = HTTPSim::Server::Dummy->new(
     dump_path => './test'
