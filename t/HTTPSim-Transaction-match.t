@@ -12,7 +12,7 @@ package main;
 
 use strict;
 use warnings;
-use Test::More tests => 30;
+use Test::More tests => 37;
 use HTTP::Request;
 use HTTP::Response;
 use HTTP::Headers;
@@ -72,13 +72,24 @@ my %match_rules = (
             },
         },
     },
+    regex_host => {
+        method => 'match',
+        uri => {
+            scheme => 'match',
+            host => '^.+\.org$',
+            path => 'match',
+            query_form => 'match',
+        },
+        headers => 'match',
+    },
 );
-    
+
 my %match_results = (
     default => { match => 1, wrong_method => 0, wrong_host => 0, wrong_path => 0, wrong_query => 0, switch_query => 1, wrong_scheme => 0 },
     no_host => { match => 1, wrong_method => 0, wrong_host => 1, wrong_path => 0, wrong_query => 0, switch_query => 1, wrong_scheme => 0 },
     detail_query => { match => 1, wrong_method => 0, wrong_host => 0, wrong_path => 0, wrong_query => 0, switch_query => 1, wrong_scheme => 0 },
     regex_query =>  { match => 1, wrong_method => 0, wrong_host => 0, wrong_path => 0, wrong_query => 1, switch_query => 1, wrong_scheme => 0 },
+    regex_host => { match => 1, wrong_method => 0, wrong_host => 1, wrong_path => 0, wrong_query => 0, switch_query => 1, wrong_scheme => 0 },
 );
 
 while (my ($rules, $results) = each(%match_results)) {
